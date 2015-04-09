@@ -1,5 +1,5 @@
 (define (diagonal-queen? queen) 
-       (if ((= (car queen) (cdr queen)) or (= 9 (+ (car queen) (cdr queen))))
+       (if (or (= (car queen) (cdr queen)) (= 9 (+ (car queen) (cdr queen))))
            #t   
            #f))
 
@@ -9,7 +9,7 @@
              (else (have-digonal-good? (cdr positions)))))      
 
 (define (diagonal-good? positions)
-     (if ((diagonal-queen? (car positions)) and
+     (if (and (diagonal-queen? (car positions))
          (have-diagonal-queen? cdr positions))
          #f
          #t))
@@ -25,6 +25,6 @@
         (iter k-queens-row rest-queens-row)))
 
 (define (safe? positions k)
-     (if ((diagonal-good? positions) and (new-row-safe? positions))
+     (if (and (diagonal-good? positions) (new-row-safe? positions))
          #t
          #f))
